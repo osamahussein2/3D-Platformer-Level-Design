@@ -31,6 +31,10 @@ public class Health : MonoBehaviour
 	private Throwing throwing;
 	private Renderer flashRender;
 	private AudioSource aSource;
+
+    // Osama Hussein's timer in Unity
+    private float seconds;
+	private float minutes;
 	
 	//setup
 	void Awake()
@@ -45,11 +49,27 @@ public class Health : MonoBehaviour
 		originalColor = flashRender.material.color;
 		defHealth = currentHealth;
 		respawnPos = transform.position;
+
+        // Osama Hussein's timer in Unity
+        seconds = 0;
+		minutes = 0;
 	}
 	
 	//detecting damage and dying
 	void Update()
-	{		
+	{
+		// Osama Hussein's timer in Unity
+		seconds += Time.deltaTime;
+
+		if (seconds >= 60f)
+		{
+			minutes += 1f;
+
+			seconds = 0f;
+		}
+
+		Debug.Log($"Current Time: {Mathf.RoundToInt(minutes)} : {Mathf.RoundToInt(seconds)}");
+
 		//flash if we took damage
 		if (currentHealth < h)
 		{
@@ -70,12 +90,12 @@ public class Health : MonoBehaviour
 				flashing = false;
 			}
 		}
-		
-		//are we dead?
-		dead = (currentHealth <= 0) ? true : false;
+
+        //are we dead?
+        dead = (currentHealth <= 0) ? true : false;
 		if (dead)
 			Death();
-	}
+    }
 	
 	//toggle the flashObject material tint color
 	void Flash()
