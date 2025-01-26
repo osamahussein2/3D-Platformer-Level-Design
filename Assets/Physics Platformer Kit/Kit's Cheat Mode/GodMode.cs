@@ -37,7 +37,7 @@ public class GodMode : MonoBehaviour
             isRayCasting= false;
         }
 
-        if (Input.GetMouseButtonUp(0) && player != null)
+        if (Input.GetMouseButtonUp(0) && player != null && isRayCasting)
         {
             player.transform.position = teleportLocation;
         }

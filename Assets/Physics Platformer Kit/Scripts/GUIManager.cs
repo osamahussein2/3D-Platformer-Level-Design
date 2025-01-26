@@ -14,7 +14,7 @@ public class GUIManager : MonoBehaviour
 	//setup, get how many coins are in this level
 	void Start()
 	{
-		coinsInLevel = GameObject.FindGameObjectsWithTag("Coin").Length / 2;		
+		coinsInLevel = GameObject.FindObjectsOfType<Coin>().Length;
 		health = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
 	}
 	
